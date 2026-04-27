@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Saturn's Rings Hotel &amp; Spa — Tomer Baruch &amp; Study with Midnight Noise</title>
+  <meta name="description" content="A new album by Tomer Baruch &amp; Study with Midnight Noise. A musical journey to the outer rings of Saturn — listen now on Bandcamp, Spotify, Apple Music, YouTube, and Tidal." />
+  <meta name="theme-color" content="#1a1410" />
+
+  <!-- Social preview (Instagram, WhatsApp, Telegram, etc.) -->
+  <meta property="og:type" content="music.album" />
+  <meta property="og:title" content="Saturn's Rings Hotel &amp; Spa" />
+  <meta property="og:site_name" content="Tomer Baruch &amp; Study with Midnight Noise" />
+  <meta property="og:description" content="A vacation retreat for your ears. Out now on all platforms." />
+  <meta property="og:image" content="Saturn_Front.png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="1080" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Saturn's Rings Hotel &amp; Spa" />
+  <meta name="twitter:description" content="A vacation retreat for your ears." />
+  <meta name="twitter:image" content="Saturn_Front.png" />
+
+  <link rel="icon" type="image/png" href="Saturn_Front.png" />
+  <link rel="apple-touch-icon" href="Saturn_Front.png" />
+
+  <!-- Gruppo matches the retro-futuristic signage on the cover; Cormorant Garamond gives the hotel-brochure warmth -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-deep:     #14100c;
+      --bg:          #1a1410;
+      --surface:     #221a14;
+      --surface-2:   #2a201a;
+      --border:      rgba(232, 220, 196, 0.14);
+      --border-soft: rgba(232, 220, 196, 0.08);
+      --cream:       #e8dcc4;
+      --cream-dim:   #c9b896;
+      --cream-faint: #8a7e6a;
+      --ring:        #d4a574;
+      --ring-soft:   rgba(212, 165, 116, 0.18);
+
+      --display:  'Gruppo', 'Tenor Sans', sans-serif;
+      --serif:    'Cormorant Garamond', 'Georgia', serif;
+
+      --r:        14px;
+      --maxw:     440px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--serif);
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 10%, rgba(212, 165, 116, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 90%, rgba(120, 90, 70, 0.10) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    /* Twinkling starfield — subtle, atmospheric */
+    .stars, .stars::before {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .stars {
+      background-image:
+        radial-gradient(1px 1px at 20% 30%,  rgba(232, 220, 196, 0.7), transparent),
+        radial-gradient(1px 1px at 75% 12%,  rgba(232, 220, 196, 0.5), transparent),
+        radial-gradient(1px 1px at 45% 70%,  rgba(232, 220, 196, 0.6), transparent),
+        radial-gradient(2px 2px at 90% 55%,  rgba(232, 220, 196, 0.4), transparent),
+        radial-gradient(1px 1px at 10% 85%,  rgba(232, 220, 196, 0.6), transparent),
+        radial-gradient(1px 1px at 60% 40%,  rgba(232, 220, 196, 0.3), transparent),
+        radial-gradient(1px 1px at 30% 95%,  rgba(232, 220, 196, 0.5), transparent),
+        radial-gradient(2px 2px at 85% 78%,  rgba(232, 220, 196, 0.35), transparent);
+      background-repeat: no-repeat;
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+    .stars::before {
+      content: '';
+      background-image:
+        radial-gradient(1px 1px at 8% 18%,  rgba(232, 220, 196, 0.6), transparent),
+        radial-gradient(1px 1px at 50% 8%,  rgba(232, 220, 196, 0.4), transparent),
+        radial-gradient(1px 1px at 95% 35%, rgba(232, 220, 196, 0.5), transparent),
+        radial-gradient(1px 1px at 25% 60%, rgba(232, 220, 196, 0.3), transparent),
+        radial-gradient(1px 1px at 70% 90%, rgba(232, 220, 196, 0.5), transparent);
+      background-repeat: no-repeat;
+      animation: twinkle 9s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.55; }
+      to   { opacity: 1; }
+    }
+
+    /* Soft grain — gives that vinyl/film texture */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.08;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: clamp(20px, 5vw, 36px) clamp(18px, 5vw, 28px) 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Top hotel "marquee" line */
+    .marquee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-family: var(--display);
+      letter-spacing: 0.42em;
+      font-size: 10px;
+      color: var(--cream-faint);
+      text-transform: uppercase;
+      padding: 6px 0;
+      opacity: 0;
+      animation: rise 0.8s ease-out 0.05s forwards;
+    }
+    .marquee::before,
+    .marquee::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 80px;
+    }
+
+    /* Album cover — the hero */
+    .cover-wrap {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      box-shadow:
+        0 0 0 1px var(--border-soft),
+        0 30px 60px -20px rgba(0, 0, 0, 0.7),
+        0 0 80px -20px var(--ring-soft);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
+    }
+    .cover-wrap img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      animation: float 9s ease-in-out infinite;
+    }
+    .cover-wrap::after {
+      /* gentle vignette */
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.25) 100%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    /* Title block */
+    .title-block {
+      text-align: center;
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.3s forwards;
+    }
+    h1 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(28px, 7.5vw, 36px);
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .artist {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(15px, 4vw, 17px);
+      color: var(--cream-dim);
+      letter-spacing: 0.01em;
+    }
+    .artist .amp {
+      font-family: var(--display);
+      font-style: normal;
+      letter-spacing: 0.05em;
+      padding: 0 2px;
+      color: var(--ring);
+    }
+
+    /* Concierge tagline — leans into the hotel/spa concept */
+    .tagline {
+      text-align: center;
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      color: var(--ring);
+      text-transform: uppercase;
+      padding-top: 4px;
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.4s forwards;
+    }
+    .tagline-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+      color: var(--cream-faint);
+    }
+    .tagline-ornament .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--cream-faint);
+    }
+    .tagline-ornament .line {
+      width: 30px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Bandcamp embed */
+    .embed {
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.5s forwards;
+    }
+    .embed iframe {
+      display: block;
+      width: 100%;
+      height: 120px;
+      border: 0;
+    }
+
+    /* Section heading */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.55s forwards;
+    }
+    .section-heading::before,
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 60px;
+    }
+
+    /* Platform link cards */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      min-height: 60px;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r);
+      color: var(--cream);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      opacity: 0;
+      animation: rise 0.7s ease-out forwards;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .link:nth-of-type(1) { animation-delay: 0.6s; }
+    .link:nth-of-type(2) { animation-delay: 0.65s; }
+    .link:nth-of-type(3) { animation-delay: 0.70s; }
+    .link:nth-of-type(4) { animation-delay: 0.75s; }
+    .link:nth-of-type(5) { animation-delay: 0.80s; }
+    .link:nth-of-type(6) { animation-delay: 0.85s; }
+
+    /* Juno card gets a subtle ring-coloured tint to mark it as the physical option */
+    .link-vinyl {
+      background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+      border-color: var(--ring-soft);
+    }
+    .link-vinyl .link-icon { color: var(--ring); }
+    .link-vinyl .link-platform { color: var(--ring); }
+
+    .link:hover, .link:focus-visible {
+      border-color: var(--ring);
+      transform: translateY(-1px);
+      background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+      outline: none;
+    }
+    .link:active { transform: translateY(0); }
+
+    .link::after {
+      content: '↗';
+      margin-left: auto;
+      font-family: var(--display);
+      color: var(--cream-faint);
+      font-size: 18px;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .link:hover::after, .link:focus-visible::after {
+      color: var(--ring);
+      transform: translate(2px, -2px);
+    }
+
+    .link-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .link-icon svg { width: 100%; height: 100%; }
+
+    .link-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .link-platform {
+      font-family: var(--display);
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .link-meta {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--cream-faint);
+      line-height: 1;
+    }
+
+    /* Vinyl showcase section */
+    .vinyl-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.9s forwards;
+    }
+    .vinyl-frame {
+      display: block;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: #0f0c08;
+      border: 1px solid var(--border-soft);
+      box-shadow:
+        0 20px 50px -20px rgba(0,0,0,0.7),
+        0 0 60px -20px var(--ring-soft);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .vinyl-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .vinyl-frame:hover, .vinyl-frame:focus-visible {
+      border-color: var(--ring);
+      outline: none;
+    }
+    .vinyl-frame:hover img, .vinyl-frame:focus-visible img {
+      transform: scale(1.02);
+    }
+    .vinyl-caption {
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+    .vinyl-caption a {
+      color: var(--ring);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ring-soft);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease;
+    }
+    .vinyl-caption a:hover { border-color: var(--ring); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--cream-faint);
+      line-height: 1.6;
+      opacity: 0;
+      animation: rise 0.9s ease-out 1.05s forwards;
+    }
+    footer .label {
+      font-family: var(--display);
+      font-style: normal;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+      color: var(--cream-faint);
+    }
+    footer a {
+      color: var(--cream-dim);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    footer a:hover { color: var(--ring); border-color: var(--ring); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media (min-width: 480px) {
+      h1 { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main>
+    <div class="marquee" aria-hidden="true">
+      <span>Now Playing</span>
+    </div>
+
+    <div class="cover-wrap">
+      <img src="Saturn_Front.png" alt="Saturn's Rings Hotel &amp; Spa album cover — Saturn floating in a warm sepia cosmos" />
+    </div>
+
+    <div class="title-block">
+      <h1>Saturn's Rings<br />Hotel <span style="color: var(--ring)">&amp;</span> Spa</h1>
+      <p class="artist">Tomer Baruch <span class="amp">&amp;</span> Study with Midnight Noise</p>
+    </div>
+
+    <div class="tagline">
+      <span>A Vacation Retreat for Your Ears</span>
+      <div class="tagline-ornament">
+        <span class="line"></span>
+        <span class="dot"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+
+    <div class="embed">
+      <iframe
+        title="Saturn's Rings Hotel &amp; Spa — Bandcamp player"
+        src="https://bandcamp.com/EmbeddedPlayer/album=2555703874/size=large/bgcol=1a1410/linkcol=e8dcc4/tracklist=false/artwork=small/transparent=true/"
+        seamless
+        loading="lazy">
+        <a href="https://tomerbaruch.bandcamp.com/album/saturns-rings-hotel-spa">Saturn's Rings Hotel &amp; Spa by Tomer Baruch, Study with Midnight Noise</a>
+      </iframe>
+    </div>
+
+    <div class="section-heading"><span>Listen Everywhere</span></div>
+
+    <nav class="links" aria-label="Streaming platforms">
+
+      <a class="link" href="https://tomerbaruch.bandcamp.com/album/saturns-rings-hotel-spa" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 18.5h13.5l6.5-13H8.5L2 18.5z"/></svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">Bandcamp</span>
+          <span class="link-meta">Buy &middot; Stream &middot; Download</span>
+        </span>
+      </a>
+
+      <a class="link" href="https://open.spotify.com/album/4sTQoIXBLE1Bc2L5bn08L0?si=o8m1W9xbRJyyojyzPI0FZQ" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 11-.277-1.214c3.809-.871 7.077-.496 9.713 1.115.293.18.379.567.206.856zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 11-.452-1.493c3.632-1.102 8.147-.568 11.232 1.328a.78.78 0 01.257 1.074zm.105-2.835c-3.223-1.914-8.54-2.09-11.618-1.156a.935.935 0 11-.542-1.79c3.532-1.072 9.405-.865 13.115 1.338a.936.936 0 11-.955 1.608z"/></svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">Spotify</span>
+          <span class="link-meta">Stream the album</span>
+        </span>
+      </a>
+
+      <a class="link" href="https://music.apple.com/il/album/saturns-rings-hotel-spa/1880531665" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 2h-15A2.5 2.5 0 002 4.5v15A2.5 2.5 0 004.5 22h15a2.5 2.5 0 002.5-2.5v-15A2.5 2.5 0 0019.5 2zM16 16.5c0 .83-.67 1.5-1.5 1.5S13 17.33 13 16.5s.67-1.5 1.5-1.5c.18 0 .34.04.5.09V8l-5 1.5v8c0 .83-.67 1.5-1.5 1.5S7 18.33 7 17.5 7.67 16 8.5 16c.18 0 .34.04.5.09V7l8-2.5v12z"/></svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">Apple Music</span>
+          <span class="link-meta">Stream the album</span>
+        </span>
+      </a>
+
+      <a class="link" href="https://www.youtube.com/watch?v=2uwI1zyaRL0&list=OLAK5uy_lg8MBk4viaK_3b5qoJN1yXEajWqDUzhIw" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">YouTube</span>
+          <span class="link-meta">Watch the playlist</span>
+        </span>
+      </a>
+
+      <a class="link" href="https://tidal.com/album/517084075" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l-4.004 4.004 4.004 4.004 4.004-4.004L12.012 12l4.004-4.004 4.004 4.004L24.024 7.996 20.02 3.992l-4.004 4.004z"/></svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">Tidal</span>
+          <span class="link-meta">Stream in hi-fi</span>
+        </span>
+      </a>
+
+      <a class="link link-vinyl" href="https://www.juno.co.uk/products/study-with-midnight-noise-saturns-rings-hotel-spa-vinyl/1131506-01/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6.5"/>
+            <circle cx="12" cy="12" r="3"/>
+            <circle cx="12" cy="12" r="1" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="link-label">
+          <span class="link-platform">Juno</span>
+          <span class="link-meta">Order the 12&#8243; vinyl</span>
+        </span>
+      </a>
+
+    </nav>
+
+    <section class="vinyl-section" aria-label="Vinyl edition">
+      <div class="section-heading"><span>Also on 12&#8243; Vinyl</span></div>
+      <a class="vinyl-frame" href="https://www.juno.co.uk/products/study-with-midnight-noise-saturns-rings-hotel-spa-vinyl/1131506-01/" target="_blank" rel="noopener" aria-label="Order the vinyl edition on Juno">
+        <img src="saturn-rings-hotel-vinyl.jpg" alt="Saturn's Rings Hotel &amp; Spa 12-inch vinyl record sliding out of its sleeve" loading="lazy" />
+      </a>
+      <p class="vinyl-caption">Limited pressing &mdash; available from <a href="https://www.juno.co.uk/products/study-with-midnight-noise-saturns-rings-hotel-spa-vinyl/1131506-01/" target="_blank" rel="noopener">Juno</a> and <a href="https://tomerbaruch.bandcamp.com/album/saturns-rings-hotel-spa" target="_blank" rel="noopener">Bandcamp</a></p>
+    </section>
+
+    <footer>
+      <span class="label">Ma Ze Records &middot; MMXXVI</span>
+      Released April 2026 &middot; <a href="https://www.tomerbaruch.com" target="_blank" rel="noopener">tomerbaruch.com</a>
+    </footer>
+  </main>
+</body>
+</html>
